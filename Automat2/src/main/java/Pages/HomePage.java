@@ -4,6 +4,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomePage {
     WebDriver driver;
@@ -21,6 +29,18 @@ public class HomePage {
     WebElement removeSauceBP;
     @FindBy(id = "add-to-cart-sauce-labs-backpack")
     WebElement addtocartSauceBP;
+    @FindBy(id = "about_sidebar_link")
+    WebElement aboutbtn;
+    @FindBy(className = "product_sort_container")
+    WebElement sortbtn;
+    @FindBy(className = "inventory_item_price")
+    List<WebElement> itemPriceLabels;
+    @FindBy(className = "social_facebook")
+    WebElement facebookbtn;
+    @FindBy(className = "social_linkedin")
+    WebElement linkedinbtn;
+
+
 
 
 
@@ -33,6 +53,12 @@ public class HomePage {
     }
     public void clickTwitter(){
         twitterbtn.click();
+    }
+    public void clickFacebook(){
+        facebookbtn.click();
+    }
+    public void clickLinkedin(){
+        linkedinbtn.click();
     }
     public String getCartText(){
         String cartText= carticon.getText();
@@ -53,6 +79,32 @@ public class HomePage {
     public void clickReset(){
         resetbtn.click();
     }
+    public void clickAbout(){
+        WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(aboutbtn));
+        aboutbtn.click();
+    }
+    public void selectFilter(String element){
+        Select selectObject=new Select(sortbtn);
+        selectObject.selectByVisibleText(element);
+    }
+    public List<Double> getAllItemPrices(){
+        List<Double> prices= new ArrayList<>();
+        for (WebElement itemPrice: itemPriceLabels){
+            String itemPriceText = itemPrice.getText();
+            StringBuilder sb = new StringBuilder(itemPriceText);
+            sb.deleteCharAt(0);
+            prices.add(Double.parseDouble(sb.toString()));
+
+        }
+        return prices;
+
+
+    }
+    public void clickCart(){
+        carticon.click();
+    }
+
 
 
 
