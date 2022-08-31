@@ -1,3 +1,5 @@
+import Pages.CartPage;
+import Pages.CheckoutPage;
 import Pages.HomePage;
 import Pages.LoginPage;
 import Utilities.DriverManager;
@@ -99,6 +101,46 @@ public class HomeTest extends BaseTest{
         List<Double> prices=homePage.getAllItemPrices();
         boolean pricesAreSorted = Ordering.natural().reverse().isOrdered(prices);
         Assert.assertTrue(pricesAreSorted);
+
+
+    }
+
+    @Test
+    public void parcialDos() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+        HomePage homePage=new HomePage(DriverManager.getDriver());
+        CartPage cartPage=new CartPage(DriverManager.getDriver());
+        CheckoutPage checkoutPage=new CheckoutPage(DriverManager.getDriver());
+        loginPage.setUser("standard_user");
+        loginPage.setPssw("secret_sauce");
+        loginPage.clickLgn();
+        homePage.clickaddbackpack();
+        homePage.clickaddbikelight();
+        homePage.clickCart();
+        Assert.assertTrue(cartPage.verifyNoItemsByNameBackPack());
+        Assert.assertTrue(cartPage.verifyNoItemsByNameBike());
+        Assert.assertEquals(homePage.getCartText(),"2");
+        System.out.println(homePage.getCartText());
+        cartPage.clickCheckout();
+        checkoutPage.setFirstname("lalo");
+        checkoutPage.setLastname("landa");
+        checkoutPage.setZipcode("0000");
+        checkoutPage.clickContinue();
+        Assert.assertEquals(checkoutPage.getSubtotal(),"Item total: $39.98");
+        System.out.println(checkoutPage.getSubtotal());
+        checkoutPage.clickFinsh();
+        checkoutPage.clickBackhome();
+        homePage.clickaddbackpack();
+        homePage.clickaddbikelight();
+        homePage.clickCart();
+        cartPage.clickRemovebp();
+        cartPage.clickRemovelp();
+        Assert.assertEquals(homePage.getCartText(),"");
+        System.out.println(homePage.getCartText());
+
+
+
+
 
 
     }

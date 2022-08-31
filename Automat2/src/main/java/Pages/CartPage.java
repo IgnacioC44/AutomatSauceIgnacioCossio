@@ -10,6 +10,16 @@ public class CartPage {
 
     @FindBy(id = "checkout")
     WebElement checkoutbtn;
+    @FindBy(id = "remove-sauce-labs-bike-light")
+    WebElement lights;
+    @FindBy(id = "remove-sauce-labs-backpack")
+    WebElement backpack;
+
+    @FindBy(className = "inventory_item_name")
+    WebElement bpsauce;
+    @FindBy(className = "inventory_item_name")
+    WebElement lightssauce;
+
 
     public CartPage(WebDriver driver){
         this.driver=driver;
@@ -18,4 +28,19 @@ public class CartPage {
     public void clickCheckout(){
         checkoutbtn.click();
     }
+    public void clickRemovebp(){backpack.click();
+    }
+    public void clickRemovelp(){
+        lights.click();
+    }
+    public boolean verifyNoItemsByNameBackPack() {
+        boolean verifyNoItems = bpsauce.isDisplayed();
+        return verifyNoItems;
+    }
+
+    public boolean verifyNoItemsByNameBike() {
+        boolean verifyNoItems = lightssauce.isDisplayed();
+        return verifyNoItems;
+    }
+
 }

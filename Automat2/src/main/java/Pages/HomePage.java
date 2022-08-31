@@ -27,6 +27,9 @@ public class HomePage {
     WebElement carticon;
     @FindBy(id = "remove-sauce-labs-backpack")
     WebElement removeSauceBP;
+    @FindBy(id = "remove-sauce-labs-bike-light")
+    WebElement removelights;
+
     @FindBy(id = "add-to-cart-sauce-labs-backpack")
     WebElement addtocartSauceBP;
     @FindBy(id = "about_sidebar_link")
@@ -39,6 +42,10 @@ public class HomePage {
     WebElement facebookbtn;
     @FindBy(className = "social_linkedin")
     WebElement linkedinbtn;
+    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    WebElement backpackadd;
+    @FindBy(id = "add-to-cart-sauce-labs-bike-light")
+    WebElement bikelightadd;
 
 
 
@@ -104,6 +111,13 @@ public class HomePage {
     public void clickCart(){
         carticon.click();
     }
+    public void clickaddbackpack(){
+        backpackadd.click();
+    }
+    public void clickaddbikelight(){
+        bikelightadd.click();
+    }
+
 
 
 
