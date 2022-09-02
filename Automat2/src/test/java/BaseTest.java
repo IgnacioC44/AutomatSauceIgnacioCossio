@@ -5,14 +5,14 @@ import Utilities.DriverManager;
 public class BaseTest {
     @Before
     public void setup(){
-        DriverManager.getDriver().get("https://www.saucedemo.com/");
-        DriverManager.getDriver().manage().window().maximize();
+        DriverManager.getDriver().driver.get("https://www.saucedemo.com/");
+        DriverManager.getDriver().driver.manage().window().maximize();
 
     }
 
     @AfterClass
     public static void cleanUp(){
-        DriverManager.getDriver().close();
+        DriverManager.getDriver().driver.close();
 
     }
 

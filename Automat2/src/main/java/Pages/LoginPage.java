@@ -14,10 +14,17 @@ public class LoginPage {
     WebElement psswtxtbx;
     @FindBy (id="login-button")
     WebElement lgnbtn;
+    @FindBy (className="login_logo")
+    WebElement loginlogo;
 
     public LoginPage(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver, this);
+    }
+    public boolean verifyLoginLogoIsDisplayed(){
+        boolean loginLogoIsDisplayed = loginlogo.isDisplayed();
+        return loginLogoIsDisplayed;
+
     }
 
     public void setUser(String username){

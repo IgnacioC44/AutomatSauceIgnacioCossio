@@ -36,6 +36,8 @@ public class HomePage {
     WebElement aboutbtn;
     @FindBy(className = "product_sort_container")
     WebElement sortbtn;
+    @FindBy(className = "app_logo")
+    WebElement applogo;
     @FindBy(className = "inventory_item_price")
     List<WebElement> itemPriceLabels;
     @FindBy(className = "social_facebook")
@@ -70,6 +72,10 @@ public class HomePage {
     public String getCartText(){
         String cartText= carticon.getText();
         return cartText;
+    }
+    public boolean appLogoIsDisplayed() {
+        boolean appLogoIsDisplayed = applogo.isDisplayed();
+        return appLogoIsDisplayed;
     }
     public void addProduct(){
         addtocartSauceBP.click();

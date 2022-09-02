@@ -6,14 +6,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverManager {
-    private static WebDriver driver;
-    public static WebDriver getDriver(){
-        if (driver==null){
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-            driver= new ChromeDriver(options);
-        }
-        return driver;
+    private static DriverManager instance;
+    public WebDriver driver;
 
+    private DriverManager(){
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        driver = new ChromeDriver(options);
+    }
+    public static DriverManager getDriver(){
+        if(instance==null){
+            instance = new DriverManager();
+        }
+        return instance;
     }
 }

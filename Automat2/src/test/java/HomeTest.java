@@ -13,8 +13,8 @@ import java.util.List;
 public class HomeTest extends BaseTest{
     @Test
     public void twitterDisplayed() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        HomePage homePage=new HomePage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        HomePage homePage=new HomePage(DriverManager.getDriver().driver);
         loginPage.setUser("standard_user");
         loginPage.setPssw("secret_sauce");
         loginPage.clickLgn();
@@ -23,8 +23,8 @@ public class HomeTest extends BaseTest{
     }
     @Test
     public void facebookDisplayed() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        HomePage homePage=new HomePage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        HomePage homePage=new HomePage(DriverManager.getDriver().driver);
         loginPage.setUser("standard_user");
         loginPage.setPssw("secret_sauce");
         loginPage.clickLgn();
@@ -33,8 +33,8 @@ public class HomeTest extends BaseTest{
     }
     @Test
     public void linkedinDisplayed() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        HomePage homePage=new HomePage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        HomePage homePage=new HomePage(DriverManager.getDriver().driver);
         loginPage.setUser("standard_user");
         loginPage.setPssw("secret_sauce");
         loginPage.clickLgn();
@@ -43,8 +43,8 @@ public class HomeTest extends BaseTest{
     }
     @Test
     public void logoutSaveCart() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        HomePage homePage=new HomePage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        HomePage homePage=new HomePage(DriverManager.getDriver().driver);
         loginPage.setUser("standard_user");
         loginPage.setPssw("secret_sauce");
         loginPage.clickLgn();
@@ -64,8 +64,8 @@ public class HomeTest extends BaseTest{
     }
     @Test
     public void resetFunction() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        HomePage homePage=new HomePage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        HomePage homePage=new HomePage(DriverManager.getDriver().driver);
         loginPage.setUser("standard_user");
         loginPage.setPssw("secret_sauce");
         loginPage.clickLgn();
@@ -81,8 +81,8 @@ public class HomeTest extends BaseTest{
     }
     @Test
     public void aboutFunction(){
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        HomePage homePage=new HomePage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        HomePage homePage=new HomePage(DriverManager.getDriver().driver);
         loginPage.setUser("standard_user");
         loginPage.setPssw("secret_sauce");
         loginPage.clickLgn();
@@ -92,8 +92,8 @@ public class HomeTest extends BaseTest{
     }
     @Test
     public void verifyHighToLow(){
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        HomePage homePage=new HomePage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        HomePage homePage=new HomePage(DriverManager.getDriver().driver);
         loginPage.setUser("standard_user");
         loginPage.setPssw("secret_sauce");
         loginPage.clickLgn();
@@ -104,13 +104,27 @@ public class HomeTest extends BaseTest{
 
 
     }
+    @Test
+    public void verifyLowToHigh(){
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        HomePage homePage=new HomePage(DriverManager.getDriver().driver);
+        loginPage.setUser("standard_user");
+        loginPage.setPssw("secret_sauce");
+        loginPage.clickLgn();
+        homePage.selectFilter("Price (low to high)");
+        List<Double> prices=homePage.getAllItemPrices();
+        boolean pricesAreSorted = Ordering.natural().isOrdered(prices);
+        Assert.assertTrue(pricesAreSorted);
+
+
+    }
 
     @Test
-    public void parcialDos() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        HomePage homePage=new HomePage(DriverManager.getDriver());
-        CartPage cartPage=new CartPage(DriverManager.getDriver());
-        CheckoutPage checkoutPage=new CheckoutPage(DriverManager.getDriver());
+    public void parcialDos()  {
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        HomePage homePage=new HomePage(DriverManager.getDriver().driver);
+        CartPage cartPage=new CartPage(DriverManager.getDriver().driver);
+        CheckoutPage checkoutPage=new CheckoutPage(DriverManager.getDriver().driver);
         loginPage.setUser("standard_user");
         loginPage.setPssw("secret_sauce");
         loginPage.clickLgn();
@@ -144,6 +158,7 @@ public class HomeTest extends BaseTest{
 
 
     }
+
 
 
 

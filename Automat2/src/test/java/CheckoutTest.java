@@ -9,10 +9,10 @@ import Pages.CartPage;
 public class CheckoutTest extends BaseTest{
     @Test
     public void errorMessageDisplayed(){
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        HomePage homePage=new HomePage(DriverManager.getDriver());
-        CartPage cartPage=new CartPage(DriverManager.getDriver());
-        CheckoutPage checkoutPage=new CheckoutPage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        HomePage homePage=new HomePage(DriverManager.getDriver().driver);
+        CartPage cartPage=new CartPage(DriverManager.getDriver().driver);
+        CheckoutPage checkoutPage=new CheckoutPage(DriverManager.getDriver().driver);
         loginPage.setUser("standard_user");
         loginPage.setPssw("secret_sauce");
         loginPage.clickLgn();
