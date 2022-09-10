@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/Login.feature",
         glue = {"stepDefinitions"},
-        tags = "@VerifyLowToHighFilter"
+        tags = "@CartIncremented"
 
 )
 public class TestRunner {
